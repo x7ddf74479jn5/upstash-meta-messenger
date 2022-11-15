@@ -1,8 +1,12 @@
+import { ChatList } from "./ChatList";
+import { MessageList } from "./MessageList";
+
 const HomePage = () => {
   return (
-    <div>
-      <h1>Welcome to the Messenger</h1>
-    </div>
+    <main>
+      <MessageList />
+      <ChatList />
+    </main>
   );
 };
 
