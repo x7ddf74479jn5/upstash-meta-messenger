@@ -1,11 +1,11 @@
-import { ChatList } from "./ChatList";
+import { ChatInput } from "./ChatInput";
 import { MessageList } from "./MessageList";
 
 const HomePage = () => {
   return (
     <main>
       <MessageList />
-      <ChatList />
+      <ChatInput />
     </main>
   );
 };

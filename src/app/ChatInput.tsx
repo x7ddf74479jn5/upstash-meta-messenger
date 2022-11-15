@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 
-export const ChatList = () => {
+export const ChatInput = () => {
   const [input, setInput] = useState("");
 
   const addMessage = (e: FormEvent<HTMLFormElement>) => {
