@@ -4,6 +4,7 @@ specifiers:
   '@types/node': 18.11.3
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
+  '@types/react-timeago': 4.1.3
   '@types/uuid': 8.3.4
   autoprefixer: ^10.4.12
   encoding: 0.1.13
@@ -20,6 +21,7 @@ specifiers:
   pusher-js: 7.5.0
   react: 18.2.0
   react-dom: 18.2.0
+  react-timeago: 7.1.0
   swr: 1.3.0
   tailwindcss: ^3.2.1
   typescript: 4.8.4
@@ -34,6 +36,7 @@ dependencies:
   pusher-js: 7.5.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-timeago: 7.1.0_react@18.2.0
   swr: 1.3.0_react@18.2.0
   uuid: 9.0.0
 
@@ -41,6 +44,7 @@ devDependencies:
   '@types/node': 18.11.3
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
+  '@types/react-timeago': 4.1.3
   '@types/uuid': 8.3.4
   autoprefixer: 10.4.13_postcss@8.4.19
   eslint: 8.27.0
@@ -289,6 +293,12 @@ packages:
 
   /@types/react-dom/18.0.6:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
+    dependencies:
+      '@types/react': 18.0.21
+    dev: true
+
+  /@types/react-timeago/4.1.3:
+    resolution: {integrity: sha512-XaaMBzuXLw7lxPPDs/fenlohcf3NDqM5qP4oOL/Meu+Hb1QChW4Igw/SruS1llEqch18RQB3wDTIwvqq4nivvw==}
     dependencies:
       '@types/react': 18.0.21
     dev: true
@@ -2062,6 +2072,14 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react-timeago/7.1.0_react@18.2.0:
+    resolution: {integrity: sha512-rouF7MiEm55fH791Y8cg+VobIJgx8gtNJ+gjr86R4ZqO1WKPkXiXjdT/lRzrvEkUzsxT1exHqV2V+Zdi114H3A==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
