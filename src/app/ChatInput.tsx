@@ -1,13 +1,16 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import useSWR from "swr";
 import { v4 as uuid } from "uuid";
 import { Message } from "../../typings";
+import { fetchMessages } from "../utils/fetchMessages";
 
 export const ChatInput = () => {
   const [input, setInput] = useState("");
+  const { data: messages, error, mutate } = useSWR("/api/getMessages", fetchMessages);
 
-  const addMessage = (e: FormEvent<HTMLFormElement>) => {
+  const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!input) return;
@@ -28,19 +31,21 @@ export const ChatInput = () => {
     };
 
     const uploadToUpstash = async () => {
-      const res = await fetch("/api/addMessage", {
+      const data = await fetch("/api/addMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ message }),
-      });
+      }).then((res) => res.json());
 
-      const data = await res.json();
-      console.log("data: ", data);
+      return [data.message, ...messages!];
     };
 
-    uploadToUpstash();
+    await mutate(uploadToUpstash, {
+      optimisticData: [message, ...messages!],
+      rollbackOnError: true,
+    });
   };
 
   return (
