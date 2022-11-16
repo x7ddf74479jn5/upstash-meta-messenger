@@ -8,7 +8,7 @@ import { fetchMessages } from "../utils/fetchMessages";
 
 export const ChatInput = () => {
   const [input, setInput] = useState("");
-  const { data: messages, error, mutate } = useSWR("/api/getMessages", fetchMessages);
+  const { data: messages, error, mutate } = useSWR<Message[]>("/api/getMessages", fetchMessages);
 
   const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ export const ChatInput = () => {
       message: messageToSend,
       created_at: Date.now(),
       username: "Pandashark",
-      profilePic: "",
+      profilePic: "/images/pandashark_icon.webp",
       email: "x7ddf74479jn5@gmail.com",
     };
 
@@ -51,7 +51,7 @@ export const ChatInput = () => {
   return (
     <form
       onSubmit={addMessage}
-      className="fixed bottom-0 z-50 flex w-full space-x-2 border-t border-gray-100 px-10 py-5"
+      className="fixed bottom-0 z-50 flex w-full space-x-2 border-t border-gray-100 bg-white px-10 py-5"
     >
       <input
         type="text"
