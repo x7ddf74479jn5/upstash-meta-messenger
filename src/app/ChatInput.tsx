@@ -1,19 +1,24 @@
 "use client";
 
+import { Session } from "next-auth";
 import { FormEvent, useState } from "react";
 import useSWR from "swr";
 import { v4 as uuid } from "uuid";
 import { Message } from "../../typings";
 import { fetchMessages } from "../utils/fetchMessages";
 
-export const ChatInput = () => {
+type Props = {
+  session: Session | null;
+};
+
+export const ChatInput = ({ session }: Props) => {
   const [input, setInput] = useState("");
   const { data: messages, error, mutate } = useSWR<Message[]>("/api/getMessages", fetchMessages);
 
   const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!input) return;
+    if (!input || !session) return;
 
     const messageToSend = input;
 
@@ -25,9 +30,9 @@ export const ChatInput = () => {
       id,
       message: messageToSend,
       created_at: Date.now(),
-      username: "Pandashark",
-      profilePic: "/images/pandashark_icon.webp",
-      email: "x7ddf74479jn5@gmail.com",
+      username: session?.user?.name!,
+      profilePic: session?.user?.image!,
+      email: session?.user?.email!,
     };
 
     const uploadToUpstash = async () => {
@@ -56,6 +61,7 @@ export const ChatInput = () => {
       <input
         type="text"
         value={input}
+        disabled={!session}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Enter message here..."
         className="flex-1 rounded border border-gray-300 px-5 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
