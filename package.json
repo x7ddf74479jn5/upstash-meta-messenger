@@ -8,6 +8,7 @@
     "format": "next lint --fix"
   },
   "dependencies": {
+    "encoding": "0.1.13",
     "ioredis": "5.2.4",
     "next": "latest",
     "pusher": "5.1.1-beta",
